@@ -7,7 +7,6 @@ export async function saveUsernamesToExcel(users, filePath) {
     { header: 'username', key: 'username', width: 30 },
   ];
 
-  // Фильтруем пользователей с валидными username
   const validUsers = users.filter(u => u.username && u.username.trim() !== '');
   
   console.log(`Total users: ${users.length}, Valid usernames: ${validUsers.length}`);
@@ -18,5 +17,3 @@ export async function saveUsernamesToExcel(users, filePath) {
 
   await workbook.xlsx.writeFile(filePath);
 }
-
-
