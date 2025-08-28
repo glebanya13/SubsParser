@@ -1,85 +1,42 @@
-# Subsparser
+# Subsparser - Telegram Channel Parser Tool
 
-## Парсер Telegram-каналов в Excel (Node.js)
+Subsparser is a powerful Telegram channel parser tool created by Gleb. It provides automated extraction of channel participants and members, exports data to Excel format with customizable columns, and offers comprehensive channel analytics.
 
-## Прайс-лист разработки парсера Telegram-каналов
+## Features
 
-**Общая информация о проекте:**
-- **Стоимость проекта:** 3,000₽
-- **Время разработки:** 30 минут
+### Channel parsing capabilities
+- Extracts participants from public and private Telegram channels
+- Supports various search filters (alphabetical, cyrillic, common patterns)
+- Handles rate limiting and API restrictions automatically
+- Processes multiple participant types (recent, admins, banned, kicked)
 
-**Детальная разбивка стоимости по модулям:**
+### Data export system
+- Exports data to Excel format with ExcelJS
+- Customizable output columns and formatting
+- Structured data organization
+- Automatic file naming and management
 
-1. **Основной движок парсера**
-   - **Стоимость:** 1,500₽
-   - **Включает:**
-     - Интеграция с Telegram MTProto клиентом
-     - Извлечение участников канала
-     - Ограничение скорости и обработка ошибок
-     - Управление сессиями и аутентификация
+### Authentication & security
+- Secure session-based authentication
+- QR code and phone number login support
+- API key management through environment variables
+- Protection against duplicate data collection
 
-2. **Система экспорта данных**
-   - **Стоимость:** 1,000₽
-   - **Включает:**
-     - Генерация Excel файлов с ExcelJS
-     - Структурированное форматирование данных
-     - Настраиваемые колонки вывода
-     - Именование и организация файлов
+## Technical implementation
 
-3. **Конфигурация и настройка**
-   - **Стоимость:** 500₽
-   - **Включает:**
-     - Настройка окружения (.env файл)
-     - Управление API учетными данными
-     - Указание целевого канала
-     - Конфигурация выходного файла
-
-**Технические характеристики:**
-- **Платформа:** Node.js + Telegram MTProto API
-- **Зависимости:** telegram, exceljs, dotenv, qrcode-terminal
-- **Архитектура:** Модульный скриптовый подход
-- **Безопасность:** Аутентификация на основе сессий, управление API ключами
-
-## Установка и настройка
-
-### Требования
-- Node.js 18+
-- Telegram API credentials от https://my.telegram.org/apps (API ID и API Hash)
-
-### Установка
-1. Клонируйте репозиторий:
-```bash
-git clone https://github.com/yourusername/subsparser.git
-cd subsparser
-```
-
-2. Установите зависимости:
-```bash
-npm install
-```
-
-3. Создайте файл `.env` в корне проекта:
-```bash
-TG_API_ID=123456
-TG_API_HASH=your_api_hash_here
-TG_SESSION=
-TG_TARGET=@your_channel_or_group
-OUTPUT_FILE=usernames.xlsx
-```
-
-### Запуск
-```bash
-npm start
-```
-
-При первом запуске потребуется аутентификация (QR-код или код). После входа скопируйте выведенный TG_SESSION и поместите его в `.env` для пропуска будущих входов.
-
-## Возможности
-- Парсинг участников Telegram-каналов и групп
-- Экспорт в Excel с настраиваемыми колонками
-- Поддержка различных фильтров поиска участников
-- Обработка ограничений API и повторных попыток
-- Безопасная аутентификация через сессии
-
-## Лицензия
-ISC
+- Built with Node.js and Telegram MTProto API (GramJS)
+- Modular architecture with separate modules for:
+  - Telegram client management
+  - Participant extraction
+  - Excel export functionality
+  - Configuration management
+- Uses environment-based configuration for:
+  - API credentials
+  - Target channel specification
+  - Output file settings
+- Features:
+  - Comprehensive error handling
+  - Rate limiting protection
+  - Session persistence
+  - Multi-language username support
+- Operates with minimal external dependencies
