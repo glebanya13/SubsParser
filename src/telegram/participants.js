@@ -19,10 +19,15 @@ export async function resolveEntity(client, targetStr) {
   }
 }
 
-export async function fetchUsernames(client, entity) {
+export async function fetchUsernames(client, entity, excludedUsernames = []) {
   const users = [];
   const seen = new Set();
   const seenUsernames = new Set();
+  
+  // Создаем Set для быстрого поиска исключенных username
+  const excludedSet = new Set(excludedUsernames.map(u => u.replace('@', '')));
+  
+  console.log(`Excluding usernames: ${excludedUsernames.join(', ')}`);
 
   const baseFilters = [
     new Api.ChannelParticipantsSearch({ q: '' }),
@@ -54,7 +59,7 @@ export async function fetchUsernames(client, entity) {
       const batch = result?.users ?? [];
       if (batch.length === 0) break;
       for (const u of batch) {
-        if (!seen.has(u.id) && u.username && !seenUsernames.has(u.username)) {
+        if (!seen.has(u.id) && u.username && !seenUsernames.has(u.username) && !excludedSet.has(u.username)) {
           seen.add(u.id);
           seenUsernames.add(u.username);
           users.push(u);
